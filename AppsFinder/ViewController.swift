@@ -86,17 +86,15 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let popup = sb.instantiateViewController(withIdentifier: "ModalViewController")
-//        let popup = sb.instantiateInitialViewController()! as! PopUpViewController
-//        popup.txt = "SSSSS"
-        
+        let popup = sb.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
+        popup.imageUrl = self.apps[indexPath.row].artworkUrl512
+        popup.appName = self.apps[indexPath.row].trackCensoredName
+        popup.appDescription = self.apps[indexPath.row].sellerName
+        popup.appType = self.apps[indexPath.row].wrapperType
+        popup.appGenre = self.apps[indexPath.row].primaryGenreName
         self.present(popup, animated: true)
         print("row clicked")
     }
-//
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        print("row clicked")
-//    }
 
     
     

@@ -206,6 +206,7 @@
                         <outlet property="modalGenre" destination="R66-4g-lzv" id="3oU-P5-aXF"/>
                         <outlet property="modalImg" destination="2Mj-Ph-yyP" id="kqv-Qa-fwM"/>
                         <outlet property="modalName" destination="UIx-AX-GBs" id="Z6e-pI-yMc"/>
+                        <outlet property="modalRealType" destination="LyZ-vt-WQd" id="YNw-3D-ESM"/>
                         <outlet property="modalType" destination="h0N-VX-Vc2" id="EVf-jI-Q2M"/>
                     </connections>
                 </viewController>

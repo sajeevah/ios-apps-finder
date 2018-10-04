@@ -15,9 +15,17 @@ class ModalViewController: UIViewController {
     @IBOutlet weak var modalType: UILabel!
     @IBOutlet weak var modalGenre: UILabel!
     @IBOutlet weak var btnCloseModal: UIButton!
+    @IBOutlet weak var modalRealType: UILabel!
+    
+    var imageUrl: String = "NA"
+    var appName: String = "NA"
+    var appDescription: String = "NA"
+    var appType: String = "NA"
+    var appGenre: String = "NA"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.loadData()
         // Do any additional setup after loading the view.
     }
 
@@ -30,14 +38,24 @@ class ModalViewController: UIViewController {
     @IBAction func btnCloseModalClick(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    func loadData(){
+        self.modalName.text = self.appName
+        self.modalType.text = self.appDescription
+        self.modalGenre.text = "Genre : \(self.appGenre)"
+        self.modalRealType.text = "Type  : \(self.appType)"
+        if let imageUrl = URL(string: imageUrl){
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: imageUrl)
+                if let data = data {
+                    let image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        self.modalImg.image = image
+                    }
+                }
+            }
+        }
     }
-    */
 
 }
