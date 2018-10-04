@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let popup = sb.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
-        popup.imageUrl = self.apps[indexPath.row].artworkUrl512
+        popup.imageUrl = self.apps[indexPath.row].artworkUrl60
         popup.appName = self.apps[indexPath.row].trackCensoredName
         popup.appDescription = self.apps[indexPath.row].sellerName
         popup.appType = self.apps[indexPath.row].wrapperType
