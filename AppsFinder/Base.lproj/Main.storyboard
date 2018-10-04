@@ -65,6 +65,11 @@
                                                 <constraint firstItem="mLf-tq-tgv" firstAttribute="leading" secondItem="ol5-Pf-3Zf" secondAttribute="trailing" constant="25" id="xQ8-d7-rbx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="appMainDetails" destination="mLf-tq-tgv" id="XwF-Gx-ilw"/>
+                                            <outlet property="appMainImg" destination="ol5-Pf-3Zf" id="E64-Wx-uAe"/>
+                                            <outlet property="appMainName" destination="9Do-wB-nXq" id="7qK-Ur-FSZ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

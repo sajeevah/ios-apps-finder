@@ -10,6 +10,10 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
+    @IBOutlet weak var appMainImg: UIImageView!
+    @IBOutlet weak var appMainName: UILabel!
+    @IBOutlet weak var appMainDetails: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
