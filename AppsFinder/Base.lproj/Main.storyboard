@@ -24,6 +24,9 @@
                                     <constraint firstAttribute="height" constant="56" id="RNr-Kb-bbU"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="DSe-OO-yjs"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wj8-rq-Pzj">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>

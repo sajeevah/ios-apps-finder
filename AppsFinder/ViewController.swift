@@ -8,14 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate  {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var apps = [App]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.downloadJson(serText: "games")
+//        self.downloadJson(serText: "games")
         self.tableView.tableFooterView = UIView()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -82,6 +82,15 @@ class ViewController: UIViewController, UITableViewDataSource {
 
         return cell
         
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.apps.removeAll()
+            self.tableView.reloadData()
+            return
+        }
+        self.downloadJson(serText: searchText)
     }
 }
 
