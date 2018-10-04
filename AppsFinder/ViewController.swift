@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate  {
+class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, UITableViewDelegate  {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return self.apps.count
     }
     
-    func  tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AppCell") as? TableViewCell else {
             print("error in cell")
             return UITableViewCell()
@@ -83,6 +83,22 @@ class ViewController: UIViewController, UITableViewDataSource, UISearchBarDelega
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let popup = sb.instantiateViewController(withIdentifier: "ModalViewController")
+//        let popup = sb.instantiateInitialViewController()! as! PopUpViewController
+//        popup.txt = "SSSSS"
+        
+        self.present(popup, animated: true)
+        print("row clicked")
+    }
+//
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        print("row clicked")
+//    }
+
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
