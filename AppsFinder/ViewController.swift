@@ -8,10 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    var apps = [App]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.downloadJson(serText: "games")
+        self.tableView.tableFooterView = UIView()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -20,6 +25,63 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func downloadJson(serText: String) {
+        
+        let url = URL(string: "https://itunes.apple.com/search?term=\(serText)&limit=200&entity=software")
+        
+        guard let downloadURL = url else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+            guard let data = data,  error == nil, urlResponse != nil else {
+                print("something is wrong")
+                return
+            }
+            print("downloaded")
+            do {
+                let decoder = JSONDecoder()
+                let downloadApps = try decoder.decode(Apps.self, from: data)
+                self.apps = downloadApps.results
+                //                print(self.apps[0].description)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print("something wrong after downloaded")
+            }
+            // code
+            }.resume()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.apps.count
+    }
+    
+    func  tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AppCell") as? TableViewCell else {
+            print("error in cell")
+            return UITableViewCell()
+        }
 
+        cell.appMainName.text = self.apps[indexPath.row].trackCensoredName //sellerName
+        cell.appMainDetails.text = self.apps[indexPath.row].sellerName
+
+        if let imageUrl = URL(string: self.apps[indexPath.row].artworkUrl100){
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: imageUrl)
+                if let data = data {
+                    let image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        cell.appMainImg.image = image
+                    }
+                }
+            }
+        }
+
+        return cell
+        
+    }
 }
 
